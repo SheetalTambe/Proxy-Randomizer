@@ -1,0 +1,51 @@
+	
+
+'''''''''''''''''''''''''''' Proxy Code''''''''''''''''''''''''''''''''''''''''''''
+
+        
+    
+        
+        ForReading1 = 1
+        
+        Set objFSO = CreateObject("Scripting.FileSystemObject")
+        Set objTextFile = objFSO.OpenTextFile("E:\Proxy.txt", ForReading1)
+        
+        objTextFile.ReadAll
+        TotalNoOfProxy = objTextFile.Line
+    
+        Do While websiteStatus <> 200
+        Randomize
+        pcnt = Round((TotalNoOfProxy - 1) * Rnd() + 1, Decimals)
+        LineCount1 = pcnt
+        
+        Set objTextFile = objFSO.OpenTextFile("E:\Proxy.txt", ForReading1)
+        
+        For i = 1 To (LineCount1 - 1)
+        objTextFile.SkipLine
+        Next
+        strLine = objTextFile.ReadLine()
+        IPPort = Split(strLine, "|")
+        PROXY_IP = IPPort(0): PROXY_PORT = IPPort(1): Proxy_UserName = IPPort(2): Proxy_PassW = IPPort(3)
+        objTextFile.Close
+        
+'''''''''''''''''''''''''''''''''''''''''XML Code''''''''''''''''''''''''''''''''''''
+
+        Set xmlhttp = Nothing
+        Set xmlhttp = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+        xmlhttp.Open "GET", Website URL, False
+        xmlhttp.setProxy 2, PROXY_IP & ":" & PROXY_PORT
+        xmlhttp.setProxyCredentials Proxy_UserName, Proxy_PassW
+        Call xmlhttp.setRequestHeader("Accept", "text/html, application/xhtml+xml, */*")
+        Call xmlhttp.setRequestHeader("Accept-Language", "en-US")
+        Call xmlhttp.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko")
+        Call xmlhttp.setRequestHeader("Host", "es-store.acer.com")
+        Call xmlhttp.setRequestHeader("Proxy-Connection", "Keep-alive")
+        Call xmlhttp.setRequestHeader("content-type", "text/html; charset=UTF-8")
+        xmlhttp.send
+        websiteStatus = xmlhttp.Status
+        If websiteStatus = 200 Then Exit Do
+        Loop
+        websiteStatus = ""
+        strHTML = xmlhttp.responseText
+          
+    Call WriteVarToDisk(Strhtml, "data.html")
