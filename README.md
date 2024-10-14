@@ -1,5 +1,5 @@
 # Proxy-Randomizer
-I created Proxy randomizer function which is used for web scrapers/crawlers, helping to avoid temporal/permanent bans from web pages, generating random proxies to include in the requests.
+Created Proxy randomizer function which is used for web scrapers/crawlers, helping to avoid temporal/permanent bans from web pages, generating random proxies to include in the requests.
 
 # What is Web scraping?
 
