@@ -1,5 +1,5 @@
 # Proxy-Randomizer
-Created Proxy randomizer function which is used for web scrapers/crawlers, helping to avoid temporal/permanent bans from web pages, generating random proxies to include in the requests.
+Created Proxy randomizer function which is used for web scrapers/crawlers, helping to avoid temporal/permanent bans from web pages and generating random proxies to include in the requests.
 
 # What is Web scraping?
 
@@ -92,15 +92,15 @@ Request headers can be set using setRequestHeader method.
 
 # Send request to server
 
-    xmlhttp.send  // send method will send request to method
+    xmlhttp.send  // send method will send request to server
     
-        websiteStatus = xmlhttp.Status    // it will check website status
-        If websiteStatus = 200 Then Exit Do
+        websiteStatus = xmlhttp.Status    // storing the http response status into websitetstatus variable.
+        If websiteStatus = 200 Then Exit Do // it will check website status. The HTTP Status Code 200 denotes that the request made by the client was successful and the server was able to deliver the expected response.
         Loop
-        websiteStatus = ""
+        websiteStatus = "" 
 # store request response recived from server
         
-        strHTML = xmlhttp.responseText    // it will save the url response into strHTML variable.
+        strHTML = xmlhttp.responseText    // it will save the expected url response into strHTML variable.
           
         Call WriteVarToDisk(Strhtml, "data.html")    // this function will store the resonse of URL to computer device 
 
